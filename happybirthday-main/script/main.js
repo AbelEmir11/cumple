@@ -1,7 +1,7 @@
 // trigger to play music in the background with sweetalert
 window.addEventListener('load', () => {
     Swal.fire({
-        title: 'Do you want to play music in the background?',
+        title: 'Queres escuchar musica de fondo?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -265,22 +265,29 @@ const animationTimeline = () => {
         },
         "+=1"
     );
-    // fotos secuenciales al final
+  // fotos secuenciales al final formando mural
 let fotos = document.querySelectorAll(".photo-gallery img");
+
 fotos.forEach((foto, i) => {
+  // posiciones random en el mural
+  let x = (Math.random() * 80) - 40; // rango -40% a 40%
+  let y = (Math.random() * 80) - 40;
+  let rot = (Math.random() * 30) - 15; // rotación leve
+
   tl.to(foto, {
     opacity: 1,
-    duration: 1.5,
-    scale: 1,
+    scale: 1.2,
+    duration: 1,
+    ease: "power2.inOut"
+  })
+  .to(foto, {
+    scale: 0.5,
+    xPercent: x,
+    yPercent: y,
+    rotation: rot,
+    duration: 1,
     ease: "power2.inOut"
   });
-  if (i !== fotos.length - 1) {
-    tl.to(foto, {
-      opacity: 0,
-      duration: 1,
-      delay: 1
-    });
-  }
 });
 
 
